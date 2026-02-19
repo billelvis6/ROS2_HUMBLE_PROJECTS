@@ -98,10 +98,4 @@ source install/setup.bash
 
 ```
 
----
-
 ✅ Ce README **donne une vue globale**, montre ton travail et crée un lien clair vers chaque projet.  
-Si tu veux, je peux te créer **une version “graphique et moderne”** avec badges, icônes et sections collapsibles pour GitHub, ce qui fait très pro pour un portfolio.  
-
-Veux‑tu que je fasse ça ?
-```
