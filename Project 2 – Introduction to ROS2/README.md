@@ -1,15 +1,182 @@
-# Tekbot ROS2 Projects 
-Dans le cadre du Tekbot Robotics Challenges 2025, notre équipe a relevé trois défis techniques intensifs, réalisés à raison d’un projet par semaine. Ces travaux ont permis de mettre en pratique nos compétences en développement logiciel, en robotique et en simulation, à travers des outils professionnels comme ROS2, Gazebo et des langages comme Python et C++.
+# Sensor Data Evaluation (ROS2 – C++)
 
-# Projet 1 - Programmation Orientée Objet: Conception d’une classe Robot
-Ce premier projet consistait à développer une classe Robot en Python et C++, en appliquant les principes de la programmation orientée objet : encapsulation, héritage et polymorphisme. Nous avons conçu une architecture modulaire avec une méthode move() redéfinie dans plusieurs sous-classes, accompagnée de diagrammes UML détaillant la structure du code.
+## Overview
 
-# Projet 2 - ROS2: Évaluation de données capteurs
-Cette partie est basée sur la création de package ROS2 nommé sensor_data_evaluation avec deux nodes:
+This project demonstrates the **publisher–subscriber communication mechanism in ROS2** using a simulated environmental sensor system.
 
-Un publisher qui génère aléatoirement des données de capteurs (température, humidité, pression) toutes les 0,5 secondes.
-Un subscriber qui vérifie si ces données respectent les plages autorisées et envoie des messages dans les logs.
-Le tout est orchestré via un fichier de lancement, garantissant une exécution fluide et sans erreurs.
+A ROS2 package named `sensor_data_evaluation` was developed to simulate and evaluate sensor measurements in real time.
 
-# Projet 3 - Navigation autonome avec Pathfinding
-À l’aide de ROS2, Gazebo et RViz2, nous avons développé un système de navigation autonome pour le robot TekBot. L’objectif était d'implémenter un algorithme de pathfinding (A*, Dijkstra, ou RRT) permettant au robot de se déplacer efficacement dans un environnement simulé en évitant les obstacles. La simulation visuelle valide la robustesse de l’algorithme et l’intégration avec ROS2.
+The system publishes environmental data periodically, then verifies whether the received values respect predefined ranges.
+
+Developed with **ROS2 Humble** and **C++ (rclcpp)**.
+
+---
+
+## Objectives
+
+* Understand ROS2 architecture
+* Implement topic-based communication
+* Simulate real-world sensor measurements
+* Validate received data
+* Use launch files to orchestrate nodes
+
+---
+
+## ROS2 Concepts Used
+
+| Concept     | Usage                                          |
+| ----------- | ---------------------------------------------- |
+| Node        | Independent processes (Publisher & Subscriber) |
+| Topic       | `/sensor_data`                                 |
+| Message     | `std_msgs/String`                              |
+| Timer       | Periodic publishing                            |
+| Launch file | Start multiple nodes                           |
+
+---
+
+## Package Structure
+
+```
+sensor_data_evaluation/
+ ├── src/
+ │    ├── sensor_node_publisher.cpp
+ │    └── sensor_node_subscriber.cpp
+ ├── launch/
+ │    └── sensor_data_eval_launch.xml
+ ├── CMakeLists.txt
+ └── package.xml
+```
+
+---
+
+## Publisher Node
+
+**Node name:** `sensor_node_publisher`
+**Publishing topic:** `/sensor_data`
+**Publishing rate:** 0.5 seconds
+
+The node generates random environmental data:
+
+| Parameter   | Range              |
+| ----------- | ------------------ |
+| Temperature | 15°C – 35°C        |
+| Humidity    | 30% – 70%          |
+| Pressure    | 950 hPa – 1050 hPa |
+
+Example log:
+
+```
+Publishing: T = 23°C, H = 45%, P = 1002hPa
+```
+
+---
+
+## Subscriber Node
+
+**Node name:** `sensor_node_subscriber`
+**Subscribed topic:** `/sensor_data`
+
+The subscriber:
+
+* Receives sensor data
+* Parses values
+* Checks if values are inside acceptable ranges
+* Displays validation result
+
+Example output:
+
+```
+Data received: T = 23°C, H = 45%, P = 1002hPa : correct values
+```
+
+---
+
+## Build Instructions
+
+```
+cd ~/workspace
+colcon build --symlink-install
+source install/setup.bash
+```
+
+Run the project:
+
+```
+ros2 launch sensor_data_evaluation sensor_data_eval_launch.xml
+```
+
+---
+
+## Testing Tools
+
+Useful ROS2 commands:
+
+```
+ros2 topic list
+ros2 topic echo /sensor_data
+rqt_graph
+rqt_topic
+```
+
+These tools verify communication between nodes.
+
+---
+
+## Dependencies
+
+* ament_cmake
+* rclcpp
+* std_msgs
+* ros2launch
+
+ROS2 Distribution:
+
+```
+ROS2 Humble
+```
+
+---
+
+## Multi-Machine Communication (Bonus)
+
+The publisher and subscriber were tested on **two separate machines** connected to the same network.
+
+Requirements:
+
+* Same ROS2 distribution
+* Same network
+* Firewall disabled
+* Same `ROS_DOMAIN_ID`
+
+This validates ROS2 distributed DDS communication.
+
+---
+
+## Limitations
+
+* Data transmitted as formatted string instead of structured message
+* Integer values only
+* XML launch file
+
+---
+
+## Possible Improvements
+
+* Custom ROS2 message type
+* Floating-point data
+* Python launch file
+* QoS configuration
+* Unit tests
+
+---
+
+## Conclusion
+
+This project validates the fundamental ROS2 communication workflow and demonstrates a basic distributed robotic software architecture.
+
+It represents a first step toward more advanced robotic systems such as sensor fusion, localization and autonomous navigation.
+
+---
+
+**Author:** B2MS CleanTech Team by Bill-Elvis SOMAKOU
+**Year:** 2025
