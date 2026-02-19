@@ -1,0 +1,7 @@
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <launch>
+      <node pkg="sensor_data_evaluation" exec="sensor_node_publisher"/>
+      <node pkg="sensor_data_evaluation" exec="sensor_node_subscriber"/>
+    </launch>
+            
