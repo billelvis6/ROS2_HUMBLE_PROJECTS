@@ -4,7 +4,7 @@
 Bienvenue dans le dépôt principal des projets ROS2 réalisés par **Billelvis Somakou**.  
 Ce dépôt rassemble plusieurs expérimentations et projets pédagogiques autour de ROS2 Humble, incluant la simulation, la navigation autonome et la communication inter-nodes.
 
----
+
 
 ## Contenu du dépôt
 
@@ -26,9 +26,9 @@ Ce dépôt rassemble plusieurs expérimentations et projets pédagogiques autour
    - Environnement de test multi-nodes et inter-machine.
    - ROS2 pub/sub avancé, timers et QoS.
 
----
 
-## 📝 Objectifs généraux
+
+##  Objectifs généraux
 
 - Apprendre et maîtriser la communication **Publisher/Subscriber**.
 - Développer des nodes ROS2 en **C++ et Python**.
@@ -36,9 +36,9 @@ Ce dépôt rassemble plusieurs expérimentations et projets pédagogiques autour
 - Simuler et contrôler des robots autonomes.
 - Déployer des nodes sur plusieurs machines.
 
----
 
-## 🛠️ Installation et prérequis
+
+##  Installation et prérequis
 
 1. Installer **ROS2 Humble** :  
    [Documentation officielle](https://docs.ros.org/en/humble/Installation.html)
@@ -62,18 +62,18 @@ colcon build --symlink-install
 source install/setup.bash
 ```
 
----
 
-## 🧰 Commandes utiles
+
+## Commandes utiles
 
 * Lister les topics : `ros2 topic list`
 * Écouter un topic : `ros2 topic echo /sensor_data`
 * Visualiser les nodes et connexions : `rqt_graph`
 * Lancer un projet : `ros2 launch <package> <launch_file>`
 
----
 
-## 🎯 Perspectives
+
+##  Perspectives
 
 * Création de messages ROS2 personnalisés.
 * Intégration de capteurs réels avec simulation.
@@ -81,7 +81,6 @@ source install/setup.bash
 * Amélioration de l’interface RViz et des nodes.
 * Développement de scripts Python de lancement et gestion multi-robot.
 
----
 
 ## 🔗 Ressources
 
@@ -90,7 +89,6 @@ source install/setup.bash
 * [Gazebo Tutorials](http://gazebosim.org/tutorials)
 * [Nav2 Documentation](https://navigation.ros.org/)
 
----
 
 **Auteur :** Billelvis Somakou
 **Année :** 2025
